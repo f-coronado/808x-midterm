@@ -48,3 +48,4 @@ Simple inverse kinematics module. Proposal.pdf is included for more info
   https://docs.google.com/presentation/d/12wDNeGenJ6PZa2YBnvytAr-irsh7FIgMs90facaFUgE/edit?usp=sharing
 
 # Video Explanation
+  https://drive.google.com/file/d/1tw8yLYi-4z8CyTvL_b2WaEcO5dOOF1O7/view?usp=sharing
