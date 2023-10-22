@@ -9,8 +9,12 @@ class transform{
         double d3;
         double d5;
         double d7;
+        double q;
+        double d;
+        double a;
+        double alpha;
 
     public:
-        Eigen::Matrix4d get_transform(int q, double d, double a, double alpha);
+        Eigen::Matrix4d get_transform(double q, double d, double a, double alpha);
         
 };

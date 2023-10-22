@@ -1,15 +1,22 @@
 #include <gtest/gtest.h>
-#include "lib1.hpp"
-#include "lib2.hpp"
+#include <transform.hpp>
+#include <cmath>
 
-TEST(dummy_test, this_should_pass) {
-  EXPECT_EQ(1, 1);
-}
+TEST(TransformTest, GetTransformFn) {
+  double q = .5*M_PI;
+  double d = 9;
+  double a = 5;
+  double alpha = 0;
+  transform transform;
+  Eigen::Matrix4d T = transform.get_transform(q, d, a, alpha);
 
-TEST(dummy_test, this_should_pass_too) {
-  EXPECT_EQ(my_function1(3), 3);
-}
+  Eigen::Matrix4d expectedT;
+    expectedT << cos(q), -sin(q)*cos(alpha), sin(q)*sin(alpha), a*cos(q),
+                sin(q), cos(q)*cos(alpha), -cos(q)*sin(alpha), a*sin(q),
+                0, sin(alpha), cos(alpha), d,
+                0, 0, 0, 1;
+  std::cout << "\nexpectedT:" << expectedT << std::endl;
+  std::cout << "\nT:" << T << std::endl;
 
-TEST(dummy_test, this_will_fail) {
-  EXPECT_EQ(my_function2(3.2), 3.2);
-}
+  EXPECT_TRUE(T.isApprox(expectedT, 1e-4));
+  };
