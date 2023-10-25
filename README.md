@@ -73,7 +73,7 @@ This generates a index.html page in the build/app_coverage sub-directory that ca
 # Video Explanation
   Phase 0: https://drive.google.com/file/d/1tw8yLYi-4z8CyTvL_b2WaEcO5dOOF1O7/view?usp=sharing
 
-  Phase 1:
+  Phase 1: https://drive.google.com/file/d/1o_8EPgpjgHKsp7_N7xTXA3sdUGlNZmDy/view?usp=sharing
 ```
 
 
