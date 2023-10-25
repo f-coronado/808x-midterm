@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <transform.hpp>
 #include <jacobian.hpp>
+#include <jointangles.hpp>
 
 TEST(TransformTest, GetTransformFn) {
   double q = .5*M_PI;
@@ -35,4 +36,21 @@ TEST(JacobianTest, GetJx){
   Eigen::Matrix<double, 3, 6> Jx = jacobian.create_Jx(J_v, J_v, J_v, J_w, J_w, J_w);
 
   EXPECT_TRUE(Jx.isApprox(expectedJ, 1e-4));
+};
+
+TEST(JointAnglesTest, ComputeJointAngles) {
+    YourRobotClass robot; // Create an instance of your robot class
+
+    // Define the expected joint angles (replace with actual values)
+    std::vector<double> expectedJointAngles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+
+    // Call the function to compute joint angles
+    std::vector<double> computedJointAngles = robot.computeJointAngles();
+
+    // Use EXPECT or ASSERT to check if the computed joint angles match the expected values
+    ASSERT_EQ(computedJointAngles.size(), expectedJointAngles.size());
+
+    for (size_t i = 0; i < computedJointAngles.size(); ++i) {
+        EXPECT_NEAR(computedJointAngles[i], expectedJointAngles[i], 1e-4); // Adjust the tolerance (1e-4) as needed
+    }
 };
