@@ -1,4 +1,3 @@
-
-add_subdirectory (lib1)
-add_subdirectory (lib2)
-
+add_subdirectory(jacobian)
+add_subdirectory(transform)
+add_subdirectory(joint_angles)

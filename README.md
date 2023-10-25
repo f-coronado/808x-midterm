@@ -1,12 +1,12 @@
 # cpp-boilerplate-v2
 
 # C++ Boilerplate v2 Badges
-![CICD Workflow status](https://github.com/TommyChangUMD/cpp-boilerplate-v2/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2/branch/main/graph/badge.svg)](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![CICD Workflow status](https://github.com/f-coronado/808x-midterm/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/f-coronado/808x-midterm/branch/main/graph/badge.svg)](https://codecov.io/gh/f-coronado/808x-midterm) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
 ## Overview
 
-Simple inverse kinematics module. Proposal.pdf is included for more info
+Simple inverse kinematics module. Proposal.pdf is included for more info.
 
 ## Standard install via command-line
 ```bash
@@ -14,10 +14,10 @@ Simple inverse kinematics module. Proposal.pdf is included for more info
   git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2
   cd cpp-boilerplate-v2
 # Configure the project and generate a native build system:
-  # Must re-run this command whenever any CMakeLists.txt file has been changed.
+# Must re-run this command whenever any CMakeLists.txt file has been changed.
   cmake -S ./ -B build/
 # Compile and build the project:
-  # rebuild only files that are modified since the last build
+# rebuild only files that are modified since the last build
   cmake --build build/
   # or rebuild everything from scracth
   cmake --build build/ --clean-first
@@ -31,17 +31,40 @@ Simple inverse kinematics module. Proposal.pdf is included for more info
   ctest --test-dir build/
 # Build docs:
   cmake --build build/ --target docs
-  # open a web browser to browse the doc
+# open a web browser to browse the doc
   open docs/html/index.html
 # Clean
   cmake --build build/ --target clean
 # Clean and start over:
   rm -rf build/
 ```
+## Creating coverage reports
+```bash
+# if you don't have gcovr or lcov installed, do:
+  sudo apt-get install gcovr lcov
+# Set the build type to Debug and WANT_COVERAGE=ON
+  cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -S ./ -B build/
+# Now, do a clean compile, run unit test, and generate the covereage report
+  cmake --build build/ --clean-first --target all test_coverage
+# open a web browser to browse the test coverage report
+  open build/test_coverage/index.html
+
+This generates a index.html page in the build/test_coverage sub-directory that can be viewed locally in a web browser.
+
+You can also get code coverage report for the shell-app target, instead of unit test. Repeat the previous 2 steps but with the app_coverage target:
+
+# Now, do another clean compile, run shell-app, and generate its covereage report
+  cmake --build build/ --clean-first --target all app_coverage
+# open a web browser to browse the test coverage report
+  open build/app_coverage/index.html
+
+This generates a index.html page in the build/app_coverage sub-directory that can be viewed locally in a web browser.
+```
+
 
 ## Links
 ```bash
-# Product Backlog
+# Product backlog, iteration backlog and time log
   https://docs.google.com/spreadsheets/d/1VKGt2zKTjBtlkvJMwKdi0k1ZclaYV6AWt2wLDDGk_b0/edit?usp=sharing
 
 # Quad Chart
@@ -49,3 +72,13 @@ Simple inverse kinematics module. Proposal.pdf is included for more info
 
 # Video Explanation
   https://drive.google.com/file/d/1tw8yLYi-4z8CyTvL_b2WaEcO5dOOF1O7/view?usp=sharing
+=======
+  Phase 0: https://drive.google.com/file/d/1tw8yLYi-4z8CyTvL_b2WaEcO5dOOF1O7/view?usp=sharing
+
+  Phase 1: https://drive.google.com/file/d/1o_8EPgpjgHKsp7_N7xTXA3sdUGlNZmDy/view?usp=sharing
+```
+## Requirements
+```bash
+  # make sure you have the eigen library installed
+  sudo apt-get install libeigen3-dev
+  
