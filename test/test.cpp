@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <transform.hpp>
 #include <jacobian.hpp>
-#include <jointangles.hpp>
+#include <joint_angles.hpp>
 
 TEST(TransformTest, GetTransformFn) {
   double q = .5*M_PI;
