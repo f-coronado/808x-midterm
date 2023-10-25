@@ -29,9 +29,7 @@ void RobotController::setJointAngles(const std::vector<double>& angles) {
         return;
     }
 
-    // Send the joint angles to the robot
-    // This part depends on your robot's control interface.
-    // You may need to use the specific functions provided by your robot's SDK.
+    // Send the joint angles to the robot 
 
     // Print the joint angles
     std::cout << "Setting joint angles: ";
