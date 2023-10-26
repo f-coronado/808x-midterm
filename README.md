@@ -4,9 +4,18 @@
 ![CICD Workflow status](https://github.com/f-coronado/808x-midterm/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/f-coronado/808x-midterm/branch/main/graph/badge.svg)](https://codecov.io/gh/f-coronado/808x-midterm) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
-## Overview
+## Overview and description
 
 Simple inverse kinematics module. Proposal.pdf is included for more info.
+
+
+
+## Personnel
+Fabrizzio Coronado | f-coronado | https://www.linkedin.com/in/fabrizzio-coronado/
+<br>I am a 2nd year graduate student at the University of Maryland pursuing a masters in Robotics. After graduating with my Bachelors in Mechanical Engineering in 2021, I started working in the space industry specifically on satellites and would like to pursue a career in space robotics. 
+
+
+
 
 ## Standard install via command-line
 ```bash
