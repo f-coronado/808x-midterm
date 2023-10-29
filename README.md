@@ -6,7 +6,14 @@
 
 ## Overview and description
 
-Simple inverse kinematics module. Proposal.pdf is included for more info.
+Simple velocity inverse kinematics module. This application can take take the end effector velocity from the user and generate the joint angle velocities needed to achieve the desired end effector velocities. This module assumes the manipulator arm is the franka emika panda arm. First the transformation matrix from the base to end effector is found using the get_transform method from the transform class. The transform matrix is a 4x4 matrix where the upper left 3x3 contains the rotational portion of the transformation and the top right 3x1 is the translational portion of the matrix. The intermediate transform matrices from base to joint 2, 3, 4, etc. are also found. These transformation matrices are needed to construct the jacobian matrix. The jacobian matrix is a 6x6 matrix which is illustrated below: 
+
+![Relative Image](./images/jacobian.png)
+
+In this picture we call the translation portion of the transform matrix from base to end effector x_p. This is needed to calculate the top 3 rows of the jacobian matrix. We take the partial derivative of x_p with respect to each joint. The bottom 3 rows of the jacobian matrix are collected from the 3rd column, top 3 rows of the intermediate transform matrices base to joint 1, joint 2, joint 3, etc. 
+The jacobian matrix is needed because the mapping from end effector velocity to joint velocity is achieved by the formula:
+q_dot = inv(J) * x_dot
+Where J is the jacobian and x_dot is the end effector velocity vector. Proposal.pdf is included for more info.
 
 
 
@@ -20,8 +27,8 @@ Fabrizzio Coronado | f-coronado | https://www.linkedin.com/in/fabrizzio-coronado
 ## Standard install via command-line
 ```bash
 # Download the code:
-  git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2
-  cd cpp-boilerplate-v2
+  git https://github.com/f-coronado/808x-midterm.git
+  cd 808x-midterm
 # Configure the project and generate a native build system:
 # Must re-run this command whenever any CMakeLists.txt file has been changed.
   cmake -S ./ -B build/
