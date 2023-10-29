@@ -16,6 +16,8 @@ target_include_directories(shell-app PUBLIC
 target_link_libraries(shell-app PUBLIC
   # list of libraries
   myLib1
+  myLib2
+  myLib3
   )
 
 target_link_options(shell-app PUBLIC
