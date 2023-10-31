@@ -1,50 +1,74 @@
 #include <eigen3/Eigen/Core>
 #include <iostream>
-#include <jacobian.hpp>
-#include <symengine/symbol.h>
-#include <symengine/symengine_exception.h>
-using SymEngine::Expression;
-using SymEngine::symbol;
 using Eigen::MatrixXd;
-#include <symengine/derivative.h>
-#include <transform.hpp>
+#include <jacobian.hpp>
 #include <joint_angles.hpp>
 
-
-
 int main() {
-  std::cout << "Demo..." << std::endl;
-  jacobian jacobian;
-  transform transform;
-  // joint_angles joint_angles;
 
-  Eigen::Matrix<double, 1, 6> q_joint;
-  q_joint << 0, 0, M_PI/2, 0, M_PI, 0;
+    std::cout << "Welcome to the Inverse Kinematics Demo \n\n" 
+    <<"Would you like to set your own desired end effector velocity vector" 
+    << "and initial joint angles or use predefined values? (y/n):" << std::endl;
 
-  Eigen::Matrix<double, 1, 6> x_dot;
-  x_dot << 0, -4*M_PI*sin(M_PI/2), 4*M_PI*cos(M_PI/2), 0, 0, 0;
-  std::cout << "\nUsing x_dot: " << x_dot << "\nand q_joint: " << q_joint << "\n";
+    char userInput;
+    while (true) {
+        std::cin >> userInput;
+        if (userInput == 'y' || userInput == 'n') {
+            break;  // Valid input, exit the loop
+        } else {
+            std::cout << "Please enter 'y' for yes or 'n' for no: ";
+        }
+    }
 
-  Eigen::Matrix4d T_01 = transform.get_transform(q_joint(0,0), transform.d1, 0, M_PI/2);
-  Eigen::Matrix4d T_12 = transform.get_transform(q_joint(0,1), 0, 0, -M_PI/2);
-  Eigen::Matrix4d T_23 = transform.get_transform(0, transform.d3, transform.a3, -M_PI/2);
-  Eigen::Matrix4d T_34 = transform.get_transform(q_joint(0,3), 0, -transform.a3, M_PI/2);
-  Eigen::Matrix4d T_45 = transform.get_transform(q_joint(0,4), transform.d5, 0, M_PI/2);
-  Eigen::Matrix4d T_56 = transform.get_transform(q_joint(0,5), 0, transform.a3, -M_PI/2);
-  Eigen::Matrix4d T_6n = transform.get_transform(1, -transform.d7, 0, 0);
+    jacobian jacobianInstance;
+    joint_angles robot;
+    Eigen::Matrix<double, 6, 1> x_dot;
+    Eigen::Matrix<double, 1, 6> initial_angles(6);
 
-  Eigen::Matrix4d T_02 = T_01 * T_12;
-  Eigen::Matrix4d T_03 = T_02 *T_23;
-  Eigen::Matrix4d T_04 = T_02 * T_23 * T_34;
-  Eigen::Matrix4d T_05 = T_04 * T_45;
-  Eigen::Matrix4d T_06 = T_05 * T_56;
-  Eigen::Matrix4d T_0n = T_06 * T_6n;
-  std::cout << "Transformation from base to end effector is: \n" << T_0n << std::endl;
 
-  Eigen::Matrix <double, 3, 1> x_p;
-  x_p << T_0n(0, 3), T_0n(1, 3), T_0n(2, 3);
-  std::cout << "x_p:\n" << x_p << std::endl;
+    if (userInput == 'n'){
+        x_dot << 0, -4*M_PI*sin(M_PI/2), 4*M_PI*cos(M_PI/2), 0, 0, 0;
+        initial_angles << double(0), double(0), double(M_PI/2), double(0), double(M_PI/2), double(0);
 
-  
+        std::cout << "Using EE velocity vector: \n" << x_dot << "\nWith initial joint angles:"
+        << initial_angles << std::endl;
+        Eigen::Matrix<double, 6, 6> jacobianM = jacobianInstance.j_matrix(double(0), \
+                                                                        double(0), \
+                                                                        double(M_PI/2), \
+                                                                        double(0), \
+                                                                        double(M_PI/2), \
+                                                                        double(0));
+        std::cout << "\n jacobian matrix is as follows: \n" << jacobianM << std::endl;
 
+        // q_dot are the joint velocities we are solving for
+        Eigen::Matrix<double, 6, 1> q_dot = robot.velocity_IK(initial_angles, x_dot, jacobianM);
+        std::cout << "\nThe required joint angle velocities are:\n " << q_dot << std::endl;
+    }
+    else{
+        std::cout << "Please enter 6 values for your desired end effector velocities: " << std::endl;
+        for (int i = 0; i < 6; ++i){
+            std::cin >> x_dot[i];
+        }
+        std::cout << "You entered:\n" << x_dot;
+
+        std::cout << "\nPlease enter 6 values for your desired initial joint angles: " << std::endl;
+        for (int i = 0; i < 6; ++i){
+            std::cin >> initial_angles[i];
+        }
+        std::cout << "You entered:\n" << initial_angles;
+
+        Eigen::Matrix<double, 6, 6> jacobianM = jacobianInstance.j_matrix(double(0), \
+                                                                        double(0), \
+                                                                        double(M_PI/2), \
+                                                                        double(0), \
+                                                                        double(M_PI/2), \
+                                                                        double(0));
+        std::cout << "\njacobian matrix is as follows: \n" << jacobianM << std::endl;
+
+        // q_dot are the joint velocities we are solving for
+        Eigen::Matrix<double, 6, 1> q_dot = robot.velocity_IK(initial_angles, x_dot, jacobianM);
+        std::cout << "\nThe required joint angle velocities are:\n " << q_dot << std::endl;
+    }
+
+    return 0;
 }
