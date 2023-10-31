@@ -5,7 +5,11 @@
 #include <vector>
 
 /**
- * @brief Class for controlling a robot manipulator's joint angles.
+ * @file joint_angles.hpp
+ * @brief Used with jacobian class to find the joint angle velocities using inverse kinematics
+ * @author Fabrizzio Coronado
+ * @date 2023
+ * @copyright Copyright (c) 2023 by Fabrizzio Coronado.
  */
 class joint_angles {
 public:
