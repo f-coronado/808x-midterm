@@ -1,28 +1,26 @@
-# cpp-boilerplate-v2
+# 808x-midterm
 
-# C++ Boilerplate v2 Badges
-![CICD Workflow status](https://github.com/f-coronado/808x-midterm/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/f-coronado/808x-midterm/branch/main/graph/badge.svg)](https://codecov.io/gh/f-coronado/808x-midterm) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
+![CICD Workflow status](https://github.com/f-coronado/808x-midterm/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg?branch=iteration2)
+[![codecov](https://codecov.io/gh/f-coronado/808x-midterm/branch/iteration2/graph/badge.svg)](https://codecov.io/gh/f-coronado/808x-midterm)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## Overview and description
 
-Simple velocity inverse kinematics module. This application can take take the end effector velocity from the user and generate the joint angle velocities needed to achieve the desired end effector velocities. This module assumes the manipulator arm is the franka emika panda arm. First the transformation matrix from the base to end effector is found using the get_transform method from the transform class. The transform matrix is a 4x4 matrix where the upper left 3x3 contains the rotational portion of the transformation and the top right 3x1 is the translational portion of the matrix. The intermediate transform matrices from base to joint 2, 3, 4, etc. are also found. These transformation matrices are needed to construct the jacobian matrix. The jacobian matrix is a 6x6 matrix which is illustrated below: 
+This is a simple velocity inverse kinematics module. This application can take take the end effector velocity from the user and generate the joint angle velocities needed to achieve the desired end effector velocities. This module assumes the manipulator arm is the franka emika panda arm. In order to calculate inverse kinematics, the following equation is used: 
 
-![Relative Image](./images/jacobian.png)
+q_dot = inv(J) * x_dot
+
+Where x_dot is the end effector velocity, q_dot are the joint angle velocities that we are solving for. X_dot is the user defined end effector velocities but J is dependent on the manipulator used. For easability, the jacobian matrix was found in resources/jacobian.py using symbolic libraries and forward kinematics then coded into the jacobian class. The jacobian matrix is a 6x6 matrix which is illustrated below: 
+
+![Image Alt Text](808x-midterm/Oct31.png) 
 
 In this picture we call the translation portion of the transform matrix from base to end effector x_p. This is needed to calculate the top 3 rows of the jacobian matrix. We take the partial derivative of x_p with respect to each joint. The bottom 3 rows of the jacobian matrix are collected from the 3rd column, top 3 rows of the intermediate transform matrices base to joint 1, joint 2, joint 3, etc. 
-The jacobian matrix is needed because the mapping from end effector velocity to joint velocity is achieved by the formula:
-q_dot = inv(J) * x_dot
-Where J is the jacobian and x_dot is the end effector velocity vector. Proposal.pdf is included for more info.
-
+The jacobian matrix is needed because the mapping from end effector velocity to joint velocity is achieved using the formula mentioned earlier. Where J is the jacobian and x_dot is the end effector velocity vector. Proposal.pdf is included for more info on the plan for creating this module.
 
 
 ## Personnel
 Fabrizzio Coronado | f-coronado | https://www.linkedin.com/in/fabrizzio-coronado/
 <br>I am a 2nd year graduate student at the University of Maryland pursuing a masters in Robotics. After graduating with my Bachelors in Mechanical Engineering in 2021, I started working in the space industry specifically on satellites and would like to pursue a career in space robotics. 
-
-
-
 
 ## Install via command-line
 ```bash
@@ -43,7 +41,7 @@ Fabrizzio Coronado | f-coronado | https://www.linkedin.com/in/fabrizzio-coronado
   # to see verbose output, do:
   cmake --build build/ --verbose
 ```
-## Demo, Tests, Documentation
+## Demo, Tests, Documentation, Bugs
 
 ```bash
 # To view the demo, run the program:
@@ -60,6 +58,10 @@ Fabrizzio Coronado | f-coronado | https://www.linkedin.com/in/fabrizzio-coronado
   cmake --build build/ --target docs
 # open a web browser to browse the doc
   open docs/html/index.html
+# No actual bugs were found, only warnings. See below
+  open results/cppcheck.txt
+  # Or you can run it yourself in root
+  cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name *.cpp | grep -vE -e "^./build/" )
 ```
 ## Creating coverage reports
 ```bash
@@ -86,22 +88,35 @@ This generates a index.html page in the build/app_coverage sub-directory that ca
 
 ## Links to AIP process
 ```bash
+# All files related the AIP process can be found below
+  https://drive.google.com/drive/folders/16f_gyT_-XUVV44Xeudwd2JyG00QdQZ-g?usp=sharing
+
 # Product backlog, iteration backlog and time log
-  https://docs.google.com/spreadsheets/d/1VKGt2zKTjBtlkvJMwKdi0k1ZclaYV6AWt2wLDDGk_b0/edit?usp=sharing
+  https://docs.google.com/spreadsheets/d/1K1HQfK7hzTwkgw_q-7HrA40nc2Vym68gRzik8PI6Igc/edit?usp=sharing  
+
+# Planning Meetings folder
+  https://drive.google.com/drive/folders/1IQSOq1343M5uGwHwAa6Bk0-hjqPUniUA?usp=sharing
 
 # Quad Chart
   https://docs.google.com/presentation/d/12wDNeGenJ6PZa2YBnvytAr-irsh7FIgMs90facaFUgE/edit?usp=sharing
-
-# All files related the AIP process can be found below
-  https://drive.google.com/drive/folders/16f_gyT_-XUVV44Xeudwd2JyG00QdQZ-g?usp=sharing
 
 # Phase Video Updates  
   Phase 0: https://drive.google.com/file/d/1tw8yLYi-4z8CyTvL_b2WaEcO5dOOF1O7/view?usp=sharing
 
   Phase 1: https://drive.google.com/file/d/1o_8EPgpjgHKsp7_N7xTXA3sdUGlNZmDy/view?usp=sharing
+
+
 ```
 ## Requirements
 ```bash
 # make sure you have the eigen library installed
   sudo apt-get install libeigen3-dev
-  
+
+# if you want to check for bugs
+  sudo apt install cppcheck
+  # after installing, run the following in the root directory
+  cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name *.cpp | grep -vE -e "^./build/" )
+```
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
