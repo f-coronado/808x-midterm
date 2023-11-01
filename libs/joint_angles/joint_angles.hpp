@@ -10,6 +10,8 @@
  * @author Fabrizzio Coronado
  * @date 2023
  * @copyright Copyright (c) 2023 by Fabrizzio Coronado.
+ *
+ * This code is licensed under the MIT License.
  */
 class joint_angles {
 public:

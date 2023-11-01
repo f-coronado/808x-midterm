@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.14)
 project(scratch)
 
+find_package(Eigen3 REQUIRED)
+include_directories(
+  ${CMAKE_SOURCE_DIR}
+  ${EIGEN3_INCLUDE_DIRS})
+
+  
 #
 # GoogleTest Setup
 # ref: https://google.github.io/googletest/quickstart-cmake.html

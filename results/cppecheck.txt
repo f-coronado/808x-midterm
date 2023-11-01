@@ -1,0 +1,29 @@
+fabrizzio@lenovo:808x-midterm$ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name *.cpp | grep -vE -e "^./build/" )
+Checking app/main.cpp ...
+app/main.cpp:30:74: warning: Found suspicious operator ',' [constStatement]
+    x_dot << 0, -4 * M_PI * sin(M_PI / 2), 4 * M_PI * cos(M_PI / 2), 0, 0, 0;
+                                                                         ^
+app/main.cpp:31:56: warning: Found suspicious operator ',' [constStatement]
+    initial_angles << 0.0, 0.0, M_PI / 2, 0.0, M_PI / 2, 0.0;
+                                                       ^
+1/5 files checked 27% done
+Checking libs/jacobian/src.cpp ...
+2/5 files checked 78% done
+Checking libs/joint_angles/src.cpp ...
+3/5 files checked 83% done
+Checking test/main.cpp ...
+4/5 files checked 85% done
+Checking test/test.cpp ...
+test/test.cpp:10:38: warning: Found suspicious operator ',' [constStatement]
+      -6.12323e-17, -0, 1, 0, 1, 1, 0, 1;
+                                     ^
+test/test.cpp:23:72: warning: Found suspicious operator ',' [constStatement]
+  x_dot << 0, -4 * M_PI * sin(M_PI / 2), 4 * M_PI * cos(M_PI / 2), 0, 0, 0;
+                                                                       ^
+test/test.cpp:25:159: warning: Found suspicious operator ',' [constStatement]
+  initial_angles << static_cast<double>(0), static_cast<double>(0), \
+                                                                                                                                                              ^
+test/test.cpp:39:20: warning: Found suspicious operator ',' [constStatement]
+                  0,
+                   ^
+5/5 files checked 100% done

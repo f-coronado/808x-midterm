@@ -17,7 +17,6 @@ target_include_directories(shell-app PUBLIC
 # Any dependent libraires needed to build this target.
 target_link_libraries(shell-app PRIVATE
   # list of libraries
-  myLib3
   myLib2
   myLib1
   )
