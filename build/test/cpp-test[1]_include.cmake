@@ -1,0 +1,5 @@
+if(EXISTS "/home/fabrizzio/Downloads/Grad_School/808X/midterm/v2/808x-midterm/build/test/cpp-test[1]_tests.cmake")
+  include("/home/fabrizzio/Downloads/Grad_School/808X/midterm/v2/808x-midterm/build/test/cpp-test[1]_tests.cmake")
+else()
+  add_test(cpp-test_NOT_BUILT cpp-test_NOT_BUILT)
+endif()

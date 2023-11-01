@@ -13,26 +13,23 @@
  * This code is licensed under the MIT License.
  */
 class jacobian {
-private:
-    Eigen::Matrix<double, 3, 1> J_v1; /**< Partial derivative of the transformation from base to end effector position with respect to joint 1 */
-    Eigen::Matrix<double, 3, 1> J_v2; /**< Partial derivative of the transformation from base to end effector position with respect to joint 2 */
-    Eigen::Matrix<double, 3, 1> J_v3; /**< Partial derivative of the transformation from base to end effector position with respect to joint 3 */
-    Eigen::Matrix<double, 3, 1> J_v4; /**< Partial derivative of the transformation from base to end effector position with respect to joint 4 */
-    Eigen::Matrix<double, 3, 1> J_v5; /**< Partial derivative of the transformation from base to end effector position with respect to joint 5 */
-    Eigen::Matrix<double, 3, 1> J_v6; /**< Partial derivative of the transformation from base to end effector position with respect to joint 6 */
-    Eigen::Matrix<double, 3, 1> Z_0; /**< A 3x1 matrix (column vector) */
-    Eigen::Matrix<double, 6, 6> J; /**< The Jacobian matrix (6x6) */
-    Eigen::Matrix<double, 6, 6> J_inv; /**< The inverse of the Jacobian matrix (6x6) */
-    Eigen::Matrix<double, 6, 1> q_dot; /**< A 6x1 matrix representing joint velocities */
-
 public:
-    double q1;
-    double q2;
-    double q3;
-    double q4;
-    double q5;
-    double q6;
+    double q1; /**< joint 1 angle */
+    double q2; /**< joint 1 angle */
+    double q3; /**< joint 1 angle */
+    double q4; /**< joint 1 angle */
+    double q5; /**< joint 1 angle */
+    double q6; /**< joint 1 angle */
 
+    /**
+     * @brief Calculates the jacobian with user defined angles
+     * @param q1 Joint 1 angle
+     * @param q2 Joint 2 angle
+     * @param q3 Joint 3 angle
+     * @param q4 Joint 4 angle
+     * @param q5 Joint 5 angle
+     * @param q6 Joint 6 angle
+     */
     Eigen::Matrix <double, 6, 6> j_matrix(double q1, 
                                         double q2, 
                                         double q3, 

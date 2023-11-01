@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_5f0_26',['Z_0',['../classjacobian.html#af143bbb6e79a06e197ae5222a3688335',1,'jacobian']]]
+  ['x_5fdot_19',['x_dot',['../classjoint__angles.html#af811a28ef08cadda826818e1236bd8b0',1,'joint_angles']]]
 ];

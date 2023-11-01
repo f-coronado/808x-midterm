@@ -10,11 +10,7 @@ This is a simple velocity inverse kinematics module. This application can take t
 
 q_dot = inv(J) * x_dot
 
-Where x_dot is the end effector velocity, q_dot are the joint angle velocities that we are solving for. X_dot is the user defined end effector velocities but J is dependent on the manipulator used. For easability, the jacobian matrix was found in resources/jacobian.py using symbolic libraries and forward kinematics then coded into the jacobian class. The jacobian matrix is a 6x6 matrix which is illustrated below: 
-
-![Image Alt Text](808x-midterm/Oct31.png) 
-
-In this picture we call the translation portion of the transform matrix from base to end effector x_p. This is needed to calculate the top 3 rows of the jacobian matrix. We take the partial derivative of x_p with respect to each joint. The bottom 3 rows of the jacobian matrix are collected from the 3rd column, top 3 rows of the intermediate transform matrices base to joint 1, joint 2, joint 3, etc. 
+Where x_dot is the end effector velocity, q_dot are the joint angle velocities that we are solving for. X_dot is the user defined end effector velocities but J is dependent on the manipulator used. For easability, the jacobian matrix was found in resources/jacobian.py using symbolic libraries and forward kinematics then coded into the jacobian class.
 The jacobian matrix is needed because the mapping from end effector velocity to joint velocity is achieved using the formula mentioned earlier. Where J is the jacobian and x_dot is the end effector velocity vector. Proposal.pdf is included for more info on the plan for creating this module.
 
 

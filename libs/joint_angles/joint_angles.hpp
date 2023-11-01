@@ -15,7 +15,9 @@
  */
 class joint_angles {
 public:
-
+    Eigen::Matrix<double, 6, 1> x_dot; /**< end effector velocity vector */
+    Eigen::Matrix<double, 6, 6> J; /** Jacobian matrix */
+    Eigen::Matrix<double, 1, 6> q_joint; /** initial joint angles*/
     /**
      * @brief Finds the velocity inverse kinematics
      * @param q_joint Initial joint angles

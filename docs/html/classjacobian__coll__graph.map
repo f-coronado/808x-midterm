@@ -1,7 +1,4 @@
 <map id="jacobian" name="jacobian">
-<area shape="rect" id="node1" title=" " alt="" coords="228,233,329,311"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,72,83"/>
-<area shape="rect" id="node3" title=" " alt="" coords="96,5,267,83"/>
-<area shape="rect" id="node4" title=" " alt="" coords="291,5,461,83"/>
-<area shape="rect" id="node5" title=" " alt="" coords="485,5,656,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,219,107,296"/>
+<area shape="rect" id="node2" title=" " alt="" coords="23,5,89,83"/>
 </map>
