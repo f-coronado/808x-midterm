@@ -1,0 +1,5 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node2" href="$classjacobian.html#a7eb2fea6f2e217b16bcd3a159f2d1e8f" title="Calculates the jacobian with user defined angles." alt="" coords="129,5,268,32"/>
+<area shape="rect" id="node3" href="$classjoint__angles.html#a121996be9d68f6b8853d8ddbf709deb9" title="Finds the velocity inverse kinematics." alt="" coords="108,56,289,83"/>
+</map>

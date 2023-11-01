@@ -1,33 +1,31 @@
-#ifndef ROBOT_CONTROLLER_HPP
-#define ROBOT_CONTROLLER_HPP
-
+#pragma once
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/LU>
 #include <vector>
 
 /**
- * @brief Class for controlling a robot manipulator's joint angles.
+ * @file joint_angles.hpp
+ * @brief Used with jacobian class to find the joint angle velocities using inverse kinematics
+ * @author Fabrizzio Coronado
+ * @date 2023
+ * @copyright Copyright (c) 2023 by Fabrizzio Coronado.
+ *
+ * This code is licensed under the MIT License.
  */
-class RobotController {
+class joint_angles {
 public:
+    Eigen::Matrix<double, 6, 1> x_dot; /**< end effector velocity vector */
+    Eigen::Matrix<double, 6, 6> J; /** Jacobian matrix */
+    Eigen::Matrix<double, 1, 6> q_joint; /** initial joint angles*/
     /**
-     * @brief Constructor for the RobotController class.
-     * @param numJoints The number of joints in the robot manipulator.
+     * @brief Finds the velocity inverse kinematics
+     * @param q_joint Initial joint angles
+     * @param x_dot The desired end effector velocity vector
+     * @param J The panda arm jacobian matrix
      */
-    RobotController(int numJoints);
-
-    /**
-     * @brief Destructor for the RobotController class.
-     */
-    ~RobotController();
-
-    /**
-     * @brief Set the joint angles of the robot manipulator.
-     * @param angles A vector containing the joint angles in radians.
-     */
-    void setJointAngles(const std::vector<double>& angles);
-
-private:
-    int numJoints; ///< The number of joints in the robot manipulator.
-    // Add any private variables and methods for interfacing with your robot's control system.
+    Eigen::Matrix<double, 6, 1> velocity_IK(Eigen::Matrix<double, 1, 6> q_joint,
+                                        Eigen::Matrix<double, 6, 1> x_dot,
+                                        Eigen::Matrix<double, 6, 6> J
+                                        );
 };
-
-#endif

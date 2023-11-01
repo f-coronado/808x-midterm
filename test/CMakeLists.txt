@@ -20,7 +20,6 @@ target_link_libraries(cpp-test PUBLIC
   gtest
   myLib1
   myLib2
-  myLib3
   )
 
 # Enable CMake’s test runner to discover the tests included in the

@@ -1,0 +1,7 @@
+fabrizzio@lenovo:808x-midterm$ cpplint --filter="-legal/copyright" $( find . -name *.cpp | grep -vE -e "^./build/" )
+Done processing ./app/main.cpp
+Done processing ./libs/jacobian/src.cpp
+Done processing ./libs/joint_angles/src.cpp
+Done processing ./libs/transform/src.cpp
+Done processing ./test/main.cpp
+Done processing ./test/test.cpp

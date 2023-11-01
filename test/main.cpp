@@ -1,7 +1,4 @@
 #include <gtest/gtest.h>
-
-#include "lib.hpp"
-#include <transform.hpp>
 #include <jacobian.hpp>
 #include <joint_angles.hpp>
 
