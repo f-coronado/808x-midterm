@@ -17,7 +17,7 @@ name: Run Unit Test and Upload Coverage Report
 on:
   # Triggered whenever push to main 
   push:
-    branches: [ "main" ]
+    branches: [ "iteration2", "main", "development" ]
 
   # Triggered whenever a pull request is created on main
   pull_request:
@@ -56,6 +56,8 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           files: ${{github.workspace}}/build/test_coverage.info
+          flags: unittests
+          name: codecov-umbrella
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)      
           
