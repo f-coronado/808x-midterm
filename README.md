@@ -18,6 +18,9 @@ The jacobian matrix is needed because the mapping from end effector velocity to 
 Fabrizzio Coronado | f-coronado | https://www.linkedin.com/in/fabrizzio-coronado/
 <br>I am a 2nd year graduate student at the University of Maryland pursuing a masters in Robotics. After graduating with my Bachelors in Mechanical Engineering in 2021, I started working in the space industry specifically on satellites and would like to pursue a career in space robotics. 
 
+Ishan Kharat | IshanMahesh | https://www.linkedin.com/in/ishan-kharat/
+<br>I am a 1st Year graduate student at the University of Maryland pursuing a master's in Robotics. I am looking forward to pursuing my career in autonomous vehicles.
+
 ## Install via command-line
 ```bash
 # Download the code:
@@ -100,6 +103,8 @@ This generates a index.html page in the build/app_coverage sub-directory that ca
   Phase 0: https://drive.google.com/file/d/1tw8yLYi-4z8CyTvL_b2WaEcO5dOOF1O7/view?usp=sharing
 
   Phase 1: https://drive.google.com/file/d/1o_8EPgpjgHKsp7_N7xTXA3sdUGlNZmDy/view?usp=sharing
+
+  Phase 2: https://drive.google.com/file/d/19Hqh2-I5LE-kY4NPAT3JK_W1iVyhOMSa/view?usp=sharing
 
 
 ```
